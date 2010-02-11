@@ -1,0 +1,37 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# HomePage
+homepage:
+  url:   /
+  param: { module: default, action: index }
+
+# Form for contest creation.
+contest_new:
+  url:   /new
+  param: { action: new, module: contest }
+
+# Ajax call for dynamique image adding.
+image_new:
+  url:   /image_new
+  param: { action: new, module: image }
+  
+# Form for contest creation.
+contest_create:
+  url:   /new
+  param: { action: new, module: contest }
+  
+# Page showing the contest.
+contest_show:
+  url:   /:contest_slug
+  param: { action: show, module: contest }
+  
+# Page showing the stats of the contest.
+contest_admin:
+  url:   /admin/:contest_secret_hash
+  param: { action: show_admin, module: contest }
+
+# JS file for the contest widget
+contest_widget:
+  url:   /:contest_slug/widget.js
+  param: { action: show_widget, module: contest }

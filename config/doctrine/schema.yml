@@ -1,0 +1,29 @@
+# config/doctrine/schema.yml
+Contest:
+  actAs:
+    Timestampable: ~
+    Sluggable:
+      unique: true
+      fields: [title]
+      canUpdate: true
+      length: 255
+  columns:
+    title:        { type:string(1000),notnull:true}
+
+Image:
+  actAs: { Timestampable: ~ }
+  columns:
+    url:            { type: string(1000), notnull: true }
+    vote_sum:       { type: integer, notnull: true, default:0 }
+    vote_count:       { type: integer, notnull: true, default:0 }
+    vote_avg:       { type: integer, notnull: true, default:0 }
+  relations:
+    Vote: { onDelete: CASCADE, local: id, foreign: image_id }
+
+Vote:
+  actAs: { Timestampable: ~ }
+  columns:
+   image_id: { type: integer, notnull: true }
+   value:   { type: integer, notnull: true }
+  relations:
+    Image: { onDelete: CASCADE, local: image_id, foreign: id }
